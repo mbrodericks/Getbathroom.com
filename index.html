@@ -1,1 +1,1217 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get free bathroom remodel quotes from verified local contractors in Texas. Fast estimates, no obligation." />
+  <title>GetBathroom.com — Free Remodel Quotes in Minutes</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:         #2563eb;
+      --blue-dark:    #1d4ed8;
+      --blue-light:   #eff6ff;
+      --blue-mid:     #bfdbfe;
+      --green:        #16a34a;
+      --green-light:  #f0fdf4;
+      --green-border: #bbf7d0;
+      --red:          #dc2626;
+      --red-glow:     rgba(220,38,38,.11);
+      --gray-50:      #f9fafb;
+      --gray-100:     #f3f4f6;
+      --gray-200:     #e5e7eb;
+      --gray-300:     #d1d5db;
+      --gray-400:     #9ca3af;
+      --gray-500:     #6b7280;
+      --gray-600:     #4b5563;
+      --gray-700:     #374151;
+      --gray-800:     #1f2937;
+      --gray-900:     #111827;
+      --white:        #ffffff;
+      --r-xs:         4px;
+      --r-sm:         8px;
+      --r-md:         14px;
+      --r-lg:         20px;
+      --r-xl:         28px;
+      --sh-sm:        0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+      --sh-md:        0 4px 18px rgba(0,0,0,.09), 0 2px 6px rgba(0,0,0,.06);
+      --sh-lg:        0 14px 52px rgba(0,0,0,.14), 0 4px 18px rgba(0,0,0,.08);
+      --font:         'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      --t:            .17s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      color: var(--gray-800);
+      background: var(--white);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─────────────────── UTILS ─────────────────── */
+    .wrap { max-width: 1080px; margin: auto; padding: 0 20px; }
+
+    .pill {
+      display: inline-block;
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .7px;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--blue-light);
+      padding: 4px 13px;
+      border-radius: 50px;
+      margin-bottom: 12px;
+    }
+
+    .sec-title {
+      font-size: clamp(1.45rem, 4vw, 2.1rem);
+      font-weight: 800;
+      color: var(--gray-900);
+      letter-spacing: -.4px;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .sec-sub {
+      font-size: .97rem;
+      color: var(--gray-500);
+      line-height: 1.65;
+    }
+
+    /* ─────────────────── HEADER ────────────────── */
+    #hdr {
+      position: sticky;
+      top: 0;
+      z-index: 500;
+      background: var(--white);
+      border-bottom: 1px solid var(--gray-200);
+      box-shadow: var(--sh-sm);
+    }
+
+    .hdr-in {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 62px;
+    }
+
+    .logo {
+      font-size: 1.28rem;
+      font-weight: 800;
+      letter-spacing: -.55px;
+      text-decoration: none;
+      color: var(--blue);
+    }
+    .logo span { color: var(--gray-900); }
+
+    .btn-hdr {
+      font-family: var(--font);
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--blue);
+      border: none;
+      border-radius: var(--r-sm);
+      padding: 9px 20px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--t), transform var(--t);
+    }
+    .btn-hdr:hover  { background: var(--blue-dark); transform: translateY(-1px); }
+    .btn-hdr:active { transform: none; }
+
+    /* ─────────────────── HERO ──────────────────── */
+    #hero {
+      background: linear-gradient(150deg, #0c2550 0%, #1a4ea8 48%, #1b7bbf 100%);
+      padding: 28px 16px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* dot-grid texture */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    /* wave bottom */
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -1px; left: 0; right: 0;
+      height: 44px;
+      background: var(--white);
+      clip-path: ellipse(58% 100% at 50% 100%);
+    }
+
+    .hero-in {
+      position: relative;
+      z-index: 1;
+      max-width: 620px;
+      margin: auto;
+    }
+
+    /* hidden on mobile — save vertical space */
+    .hero-badge { display: none; }
+    .hero-loc   { display: none; }
+    .hero-preq  { display: none; }
+
+    #hero h1 {
+      font-size: clamp(1.35rem, 5vw, 2.6rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -.4px;
+      margin-bottom: 6px;
+    }
+    #hero h1 em { font-style: normal; color: #93c5fd; }
+
+    .hero-sub {
+      font-size: clamp(.82rem, 2.2vw, .97rem);
+      color: rgba(255,255,255,.72);
+      max-width: 420px;
+      margin: 0 auto 16px;
+      line-height: 1.5;
+    }
+
+    /* ─────────────────── FORM CARD ─────────────── */
+    #form-card {
+      background: transparent;
+      padding: 0;
+      max-width: 600px;
+      margin: auto;
+    }
+
+    .fc-title {
+      font-size: .68rem;
+      font-weight: 600;
+      color: rgba(255,255,255,.45);
+      text-align: center;
+      margin-bottom: 8px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+    }
+
+    /* search bar — step 1 */
+    .search-bar {
+      display: flex;
+      align-items: stretch;
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 18px rgba(0,0,0,.18);
+      border: 1px solid rgba(255,255,255,.15);
+      margin-bottom: 10px;
+      transition: box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .search-bar:focus-within {
+      box-shadow: 0 0 0 3px rgba(37,99,235,.25), 0 4px 18px rgba(0,0,0,.18);
+      border: 1px solid rgba(37,99,235,.35);
+    }
+
+    .search-bar input {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      padding: 18px 20px;
+      font-size: 1.02rem;
+      font-family: var(--font);
+      color: var(--gray-900);
+      background: #ffffff;
+      outline: none;
+      cursor: text;
+    }
+    .search-bar input::placeholder { color: var(--gray-400); }
+    .search-bar input.err { background: #fff5f5; }
+
+    #btn-sub {
+      flex-shrink: 0;
+      border: none;
+      border-radius: 0;
+      padding: 0 18px;
+      font-family: var(--font);
+      font-size: .95rem;
+      font-weight: 600;
+      color: var(--white);
+      background: linear-gradient(135deg, #2563eb 0%, #1a5fd4 100%);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: background var(--t);
+      min-height: 58px;
+    }
+    #btn-sub:hover:not(:disabled) { background: linear-gradient(135deg, #1d4ed8 0%, #1550c0 100%); }
+    #btn-sub:disabled { background: var(--gray-300); cursor: not-allowed; }
+
+    /* step 2 fields share the existing field styles */
+    .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+    .f { }
+    .f-full { grid-column: 1 / -1; }
+    .f label, .f-full label {
+      display: block;
+      font-size: .79rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      margin-bottom: 5px;
+    }
+    .req { color: var(--red); margin-left: 2px; }
+
+    .f input, .f select,
+    .f-full input, .f-full select {
+      width: 100%;
+      padding: 12px 14px;
+      font-size: .97rem;
+      font-family: var(--font);
+      color: var(--gray-900);
+      background: var(--gray-50);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--r-sm);
+      outline: none;
+      transition: border-color var(--t), box-shadow var(--t), background var(--t);
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .f select, .f-full select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 38px;
+      cursor: pointer;
+    }
+    .f input:focus, .f select:focus,
+    .f-full input:focus, .f-full select:focus {
+      border-color: var(--blue);
+      background: var(--white);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.13);
+    }
+    .f input.err, .f select.err,
+    .f-full input.err, .f-full select.err {
+      border-color: var(--red);
+      box-shadow: 0 0 0 3px var(--red-glow);
+    }
+
+    .emsg {
+      font-size: .74rem;
+      color: var(--red);
+      margin-top: 4px;
+      margin-bottom: 2px;
+      display: none;
+      align-items: center;
+      gap: 4px;
+    }
+    .emsg.on { display: flex; }
+
+    /* zip error floats below the search bar */
+    #e-fz {
+      margin-left: 4px;
+      margin-bottom: 6px;
+    }
+
+    .micro {
+      text-align: center;
+      font-size: .77rem;
+      color: rgba(255,255,255,.55);
+      margin: 6px 0 0;
+    }
+
+    /* step-2 submit button (full-width inside card) */
+    .btn-sub {
+      width: 100%;
+      min-height: 54px;
+      padding: 15px;
+      font-family: var(--font);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      background: linear-gradient(135deg, #2563eb 0%, #1a5fd4 100%);
+      border: none;
+      border-radius: var(--r-md);
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(37,99,235,.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+    }
+    .btn-sub:hover:not(:disabled) {
+      background: linear-gradient(135deg, #1d4ed8 0%, #1550c0 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,99,235,.46);
+    }
+    .btn-sub:active:not(:disabled) { transform: none; box-shadow: 0 3px 12px rgba(37,99,235,.3); }
+    .btn-sub:disabled { background: var(--gray-300); cursor: not-allowed; box-shadow: none; }
+
+    .spin {
+      display: none;
+      width: 20px; height: 20px;
+      border: 2.5px solid rgba(255,255,255,.35);
+      border-top-color: var(--white);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+      flex-shrink: 0;
+    }
+    #btn-sub.loading .btxt, .btn-sub.loading .btxt { display: none; }
+    #btn-sub.loading .spin, .btn-sub.loading .spin { display: block; }
+    .loading-text { display: none; font-weight: 600; }
+    #btn-sub.loading .loading-text { display: inline; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .trust-micro {
+      text-align: center;
+      font-size: .73rem;
+      color: rgba(255,255,255,.5);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    /* success */
+    #ok {
+      display: none;
+      text-align: center;
+      padding: 28px 24px;
+      background: var(--white);
+      border-radius: var(--r-xl);
+      box-shadow: var(--sh-lg);
+      animation: up .4s cubic-bezier(.22,1,.36,1) both;
+    }
+    #ok.on { display: block; }
+    @keyframes up { from { opacity:0; transform:translateY(14px); } to { opacity:1; transform:none; } }
+
+    .ok-icon {
+      width: 68px; height: 68px;
+      background: var(--green-light);
+      border: 2px solid var(--green-border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 16px;
+    }
+    #ok h3 { font-size: 1.2rem; font-weight: 800; color: var(--gray-900); margin-bottom: 8px; }
+    #ok p  { font-size: .92rem; color: var(--gray-500); line-height: 1.6; }
+
+
+    /* ─────────────────── STEP 1 TRUST LINE ────────── */
+    .s1-trust {
+      text-align: center;
+      font-size: .74rem;
+      font-weight: 600;
+      color: #86efac;
+      margin-bottom: 10px;
+      letter-spacing: .1px;
+    }
+
+    /* ─────────────────── STEP 2 REVEAL ─────────── */
+    #s2 {
+      display: none;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity .25s ease, transform .25s ease;
+      background: var(--white);
+      border-radius: var(--r-xl);
+      padding: 24px 22px 20px;
+      box-shadow: var(--sh-lg);
+      margin-top: 12px;
+      text-align: left;
+    }
+    #s2.open {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .s2-divider {
+      display: flex; align-items: center; gap: 10px;
+      margin: 14px 0 12px;
+    }
+    .s2-divider::before, .s2-divider::after {
+      content: ''; flex: 1; height: 1px; background: var(--gray-200);
+    }
+    .s2-divider span {
+      font-size: .72rem; font-weight: 600;
+      color: var(--gray-400); white-space: nowrap;
+    }
+
+    /* ─────────────────── TRUST BAR ─────────────── */
+    #trust {
+      background: var(--green-light);
+      border-top: 1px solid var(--green-border);
+      border-bottom: 1px solid var(--green-border);
+      padding: 15px 20px 12px;
+      text-align: center;
+    }
+
+    .trust-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px 34px;
+      margin-bottom: 8px;
+    }
+
+    .ti {
+      display: flex; align-items: center; gap: 8px;
+      font-size: .87rem; font-weight: 600;
+      color: var(--green); white-space: nowrap;
+    }
+
+    .tck {
+      width: 20px; height: 20px;
+      background: var(--green); color: var(--white);
+      font-size: .58rem; font-weight: 800;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .trust-note {
+      font-size: .76rem;
+      color: var(--green);
+      opacity: .75;
+    }
+
+    /* ─────────────────── GALLERY ────────────────── */
+    #gallery {
+      padding: 72px 20px;
+      background: var(--gray-50);
+    }
+
+    .gal-hd { text-align: center; margin-bottom: 38px; }
+    .gal-hd .sec-sub { max-width: 460px; margin: 0 auto; }
+
+    .gal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 880px;
+      margin: auto;
+    }
+
+    .gtile {
+      border-radius: var(--r-md);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: var(--sh-md);
+    }
+
+    .gtile-in {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 11px;
+      transition: transform .35s ease;
+    }
+    .gtile:hover .gtile-in { transform: scale(1.05); }
+
+    .gtile-icon { font-size: 2.8rem; filter: drop-shadow(0 2px 8px rgba(0,0,0,.18)); }
+
+    .gtile-label {
+      font-size: .81rem; font-weight: 700;
+      color: var(--white);
+      background: rgba(0,0,0,.3);
+      padding: 5px 14px;
+      border-radius: 50px;
+      backdrop-filter: blur(4px);
+    }
+
+    /* ─────────────────── HOW IT WORKS ───────────── */
+    #hiw {
+      padding: 72px 20px;
+      background: var(--white);
+    }
+
+    .hiw-hd { margin-bottom: 46px; }
+
+    .steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      padding: 26px 22px;
+      background: var(--gray-50);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--r-md);
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    .step:hover { border-color: var(--blue-mid); box-shadow: 0 4px 18px rgba(37,99,235,.08); }
+
+    .snum {
+      width: 50px; height: 50px; flex-shrink: 0;
+      background: linear-gradient(135deg, var(--blue), #1c80cb);
+      color: var(--white);
+      font-size: 1.2rem; font-weight: 800;
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(37,99,235,.28);
+    }
+
+    .step h3 { font-size: 1rem; font-weight: 700; color: var(--gray-900); margin-bottom: 6px; }
+    .step p  { font-size: .89rem; color: var(--gray-500); line-height: 1.6; }
+
+    /* ─────────────────── EXPECT ─────────────────── */
+    #expect {
+      padding: 72px 20px;
+      background: #eef4ff;
+    }
+
+    .exp-hd { margin-bottom: 40px; }
+
+    .exp-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    .ecard {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-radius: var(--r-md);
+      padding: 28px 24px;
+      box-shadow: var(--sh-sm);
+      transition: box-shadow var(--t), border-color var(--t), transform var(--t);
+    }
+    .ecard:hover {
+      box-shadow: var(--sh-md);
+      border-color: var(--blue-mid);
+      transform: translateY(-2px);
+    }
+
+    .eicon {
+      width: 50px; height: 50px;
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .ecard h3 { font-size: 1rem; font-weight: 700; color: var(--gray-900); margin-bottom: 8px; }
+    .ecard p  { font-size: .9rem; color: var(--gray-500); line-height: 1.65; }
+
+    .exp-disc {
+      font-size: .77rem;
+      color: var(--gray-400);
+      text-align: center;
+      margin-top: 30px;
+      line-height: 1.6;
+    }
+
+    /* ─────────────────── SECOND CTA ─────────────── */
+    #cta2 {
+      padding: 72px 20px;
+      background: linear-gradient(150deg, #0c2550 0%, #1a4ea8 50%, #1b7bbf 100%);
+      text-align: center;
+      position: relative; overflow: hidden;
+    }
+    #cta2::before {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+    #cta2 .wrap { position: relative; z-index: 1; }
+
+    #cta2 h2 {
+      font-size: clamp(1.5rem, 4vw, 2.2rem);
+      font-weight: 800; color: var(--white);
+      margin-bottom: 12px; letter-spacing: -.4px;
+    }
+    #cta2 p { font-size: .97rem; color: rgba(255,255,255,.75); margin-bottom: 30px; }
+
+    .btn-cta2 {
+      display: inline-block;
+      padding: 16px 44px;
+      font-family: var(--font); font-size: 1.05rem; font-weight: 700;
+      color: var(--blue-dark);
+      background: var(--white);
+      border: none; border-radius: var(--r-md);
+      cursor: pointer; text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,0,0,.22);
+      transition: transform var(--t), box-shadow var(--t);
+    }
+    .btn-cta2:hover  { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,0,0,.3); }
+    .btn-cta2:active { transform: none; }
+
+    /* ─────────────────── FOOTER ─────────────────── */
+    footer {
+      background: var(--gray-900);
+      padding: 36px 20px;
+      text-align: center;
+    }
+
+    .ft-logo { font-size: 1.1rem; font-weight: 800; color: var(--white); margin-bottom: 18px; }
+
+    .ft-links {
+      display: flex; justify-content: center;
+      flex-wrap: wrap; gap: 8px 26px;
+      margin-bottom: 20px;
+    }
+    .ft-links a {
+      font-size: .82rem; color: var(--gray-400);
+      text-decoration: none; transition: color var(--t);
+    }
+    .ft-links a:hover { color: var(--white); }
+
+    .ft-disc {
+      font-size: .74rem; line-height: 1.65;
+      max-width: 540px; margin: auto;
+      color: var(--gray-500);
+    }
+
+    /* ─────────────────── STICKY CTA ─────────────── */
+    #sticky {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      background: var(--white);
+      border-top: 1px solid var(--gray-200);
+      padding: 12px 16px env(safe-area-inset-bottom, 0);
+      z-index: 600;
+      display: none;
+      box-shadow: 0 -4px 20px rgba(0,0,0,.1);
+    }
+    #sticky a {
+      display: block;
+      background: var(--blue);
+      color: var(--white); text-align: center;
+      font-family: var(--font); font-size: .97rem; font-weight: 700;
+      padding: 15px; border-radius: var(--r-md);
+      text-decoration: none;
+      box-shadow: 0 4px 14px rgba(37,99,235,.35);
+    }
+
+    /* ─────────────────── RESPONSIVE ─────────────── */
+    @media (min-width: 600px) {
+      .frow     { grid-template-columns: 1fr 1fr; }
+      .steps    { grid-template-columns: repeat(3, 1fr); }
+      .exp-grid { grid-template-columns: repeat(3, 1fr); }
+      .gal-grid { grid-template-columns: repeat(4, 1fr); }
+      /* restore elements hidden on mobile */
+      .hero-badge {
+        display: inline-flex;
+        align-items: center; gap: 7px;
+        background: rgba(255,255,255,.13);
+        border: 1px solid rgba(255,255,255,.2);
+        color: #bfdbfe; font-size: .77rem; font-weight: 600;
+        padding: 5px 14px; border-radius: 50px; margin-bottom: 14px;
+      }
+      .hero-loc {
+        display: flex; align-items: center; justify-content: center;
+        gap: 5px; font-size: .79rem; color: rgba(255,255,255,.5);
+        margin-bottom: 8px;
+      }
+      .hero-loc::before { content: '📍'; }
+      .hero-preq {
+        display: inline-flex; align-items: center; gap: 7px;
+        background: rgba(22,163,74,.18); border: 1px solid rgba(22,163,74,.35);
+        color: #86efac; font-size: .8rem; font-weight: 600;
+        padding: 6px 14px; border-radius: var(--r-sm); margin-bottom: 20px;
+      }
+      #hero      { padding: 48px 20px 68px; }
+      #hero h1   { font-size: clamp(1.9rem, 5.5vw, 3rem); margin-bottom: 10px; }
+      .hero-sub  { font-size: 1rem; margin-bottom: 10px; }
+    }
+
+    @media (max-width: 599px) {
+      .frow { grid-template-columns: 1fr; }
+      /* stacked search bar on mobile */
+      .search-bar { flex-direction: column; border-radius: 12px; }
+      .search-bar input {
+        padding: 15px 14px;
+        font-size: .97rem;
+        border-radius: 12px 12px 0 0;
+      }
+      #btn-sub {
+        width: 100%;
+        border-radius: 0 0 12px 12px;
+        padding: 15px;
+        min-height: 50px;
+        font-size: .95rem;
+      }
+      #sticky { display: block; }
+      body { padding-bottom: 72px; }
+      #gallery, #hiw, #expect, #cta2 { padding: 48px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══ HEADER ══════════════════════════════════════ -->
+  <header id="hdr">
+    <div class="wrap hdr-in">
+      <a class="logo" href="#"><span>Get</span>Bathroom</a>
+      <a class="btn-hdr" href="#form-card">Free Quote</a>
+    </div>
+  </header>
+
+  <!-- ══ HERO ════════════════════════════════════════ -->
+  <section id="hero">
+    <div class="hero-in">
+
+      <div class="hero-badge">🏠 Trusted Home Improvement Network</div>
+
+      <h1>Check Bathroom Remodel<br><em>Availability Near You</em></h1>
+
+      <p class="hero-sub">See if local contractors are available in your area — free, no obligation.</p>
+
+      <div class="hero-loc">Serving homeowners in Texas, including Austin, Dallas, Houston, and surrounding areas</div>
+
+      <div class="hero-preq">✔ Homeowners ready to start in the next 3 months get fastest response</div>
+
+      <!-- FORM CARD -->
+      <div id="form-card">
+        <p class="fc-title">Free · No obligation · 30 seconds</p>
+
+        <form id="lead-form" novalidate>
+
+          <!-- ── STEP 1: single search bar ── -->
+          <div class="search-bar" id="s1">
+            <input type="text" id="fz" name="zipCode"
+              placeholder="Enter your zip code to check availability"
+              inputmode="numeric" maxlength="5" autocomplete="postal-code" />
+            <button type="button" id="btn-sub">
+              <span class="btxt">Check Availability →</span>
+              <span class="spin"></span>
+              <span class="loading-text">Checking…</span>
+            </button>
+          </div>
+          <div class="emsg" id="e-fz" style="color:#fca5a5; margin-top:6px; margin-left:4px;">⚠ Enter a valid 5-digit zip.</div>
+
+          <p class="s1-trust">✔ No spam. Just matched contractors.</p>
+
+          <!-- ── STEP 2: revealed after zip check ── -->
+          <div id="s2">
+            <div class="s2-divider"><span>One more step to see contractors</span></div>
+            <div class="frow">
+
+              <div class="f f-full">
+                <label for="fn">Full Name <span class="req">*</span></label>
+                <input type="text" id="fn" name="fullName" placeholder="Jane Smith" autocomplete="name" />
+                <div class="emsg" id="e-fn">⚠ Please enter your full name.</div>
+              </div>
+
+              <div class="f">
+                <label for="fp">Phone Number <span class="req">*</span></label>
+                <input type="tel" id="fp" name="phone" placeholder="(555) 000-0000" inputmode="tel" autocomplete="tel" />
+                <div class="emsg" id="e-fp">⚠ Enter a valid phone number.</div>
+              </div>
+
+              <div class="f">
+                <label for="fpt">Project Type <span class="req">*</span></label>
+                <select id="fpt" name="projectType">
+                  <option value="">Select your project</option>
+                  <option value="Remodel">Bathroom Remodel</option>
+                  <option value="Shower Upgrade">Shower Upgrade</option>
+                  <option value="Tub Replacement">Tub Replacement</option>
+                  <option value="Full Renovation">Full Renovation</option>
+                </select>
+                <div class="emsg" id="e-fpt">⚠ Please select a project type.</div>
+              </div>
+
+              <div class="f">
+                <label for="ftl">Timeline <span class="req">*</span></label>
+                <select id="ftl" name="timeline">
+                  <option value="">Select…</option>
+                  <option value="ASAP">ASAP</option>
+                  <option value="1-3 Months">1–3 Months</option>
+                  <option value="Just Exploring">Just Exploring</option>
+                </select>
+                <div class="emsg" id="e-ftl">⚠ Please select a timeline.</div>
+              </div>
+
+            </div>
+
+            <button type="button" class="btn-sub" id="btn-submit2">
+              <span class="btxt">Match Me With Contractors →</span>
+              <span class="spin"></span>
+            </button>
+          </div><!-- /#s2 -->
+
+        </form>
+
+        <!-- Success -->
+        <div id="ok">
+          <div class="ok-icon">✅</div>
+          <h3>You're All Set!</h3>
+          <p>Thank you! A local contractor will contact you shortly with your free, no-obligation quote.</p>
+        </div>
+
+        <p class="trust-micro">Takes 30 seconds. No obligation.</p>
+      </div><!-- /#form-card -->
+
+    </div><!-- /.hero-in -->
+  </section>
+
+  <!-- ══ TRUST BAR ════════════════════════════════════ -->
+  <div id="trust">
+    <div class="trust-row">
+      <div class="ti"><span class="tck">✔</span> Verified Local Contractors</div>
+      <div class="ti"><span class="tck">✔</span> No Obligation Quotes</div>
+      <div class="ti"><span class="tck">✔</span> 100% Free Service</div>
+    </div>
+    <p class="trust-note">We connect homeowners with licensed and insured contractors</p>
+  </div>
+
+  <!-- ══ GALLERY ══════════════════════════════════════ -->
+  <section id="gallery">
+    <div class="wrap">
+      <div class="gal-hd">
+        <span class="pill">Inspiration</span>
+        <h2 class="sec-title">See What's Possible</h2>
+        <p class="sec-sub">From quick upgrades to full renovations — local contractors can make it happen.</p>
+      </div>
+      <div class="gal-grid" id="gal-grid"></div>
+    </div>
+  </section>
+
+  <!-- ══ HOW IT WORKS ═════════════════════════════════ -->
+  <section id="hiw">
+    <div class="wrap">
+      <div class="hiw-hd">
+        <span class="pill">Simple Process</span>
+        <h2 class="sec-title">How It Works</h2>
+        <p class="sec-sub">Three easy steps from your first click to a finished bathroom.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="snum">1</div>
+          <div>
+            <h3>Tell Us About Your Project</h3>
+            <p>Fill out our quick form with your zip code, project type, and timeline. Takes under 60 seconds.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum">2</div>
+          <div>
+            <h3>Get Matched With Contractors</h3>
+            <p>We connect you with pre-screened, licensed contractors in your area who specialize in bathroom remodels.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="snum">3</div>
+          <div>
+            <h3>Compare Quotes &amp; Choose</h3>
+            <p>Review estimates side-by-side. Pick the contractor that fits your budget — no pressure, no obligation.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ WHAT YOU CAN EXPECT ══════════════════════════ -->
+  <section id="expect">
+    <div class="wrap">
+      <div class="exp-hd">
+        <span class="pill">What to Know</span>
+        <h2 class="sec-title">What You Can Expect</h2>
+      </div>
+      <div class="exp-grid">
+
+        <div class="ecard">
+          <div class="eicon" style="background:#eff6ff; color:#2563eb;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Multiple Quotes, One Request</h3>
+          <p>Get connected with multiple contractors so you can compare pricing and options without making multiple calls.</p>
+        </div>
+
+        <div class="ecard">
+          <div class="eicon" style="background:#f0fdf4; color:#16a34a;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <h3>Fast Response Times</h3>
+          <p>Most homeowners hear back from contractors within 24 hours of submitting their request.</p>
+        </div>
+
+        <div class="ecard">
+          <div class="eicon" style="background:#faf5ff; color:#7c3aed;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>No Pressure, No Obligation</h3>
+          <p>You're free to compare, ask questions, or walk away. There's no commitment required.</p>
+        </div>
+
+      </div>
+      <p class="exp-disc">We connect you with independent contractors in your area. Final pricing and availability vary.</p>
+    </div>
+  </section>
+
+  <!-- ══ SECOND CTA ════════════════════════════════════ -->
+  <section id="cta2">
+    <div class="wrap">
+      <h2>Check Availability in Your Area</h2>
+      <p>Contractors are standing by. Get your free quote today.</p>
+      <a href="#form-card" class="btn-cta2">Check Contractors Near You</a>
+    </div>
+  </section>
+
+  <!-- ══ FOOTER ════════════════════════════════════════ -->
+  <footer>
+    <div class="ft-logo">GetBathroom.com</div>
+    <nav class="ft-links" aria-label="Footer">
+      <a href="#">Privacy Policy</a>
+      <a href="#">Terms of Use</a>
+      <a href="#">Contact</a>
+      <a href="#">Do Not Sell My Info</a>
+    </nav>
+    <p class="ft-disc">
+      © 2025 GetBathroom.com. All rights reserved. We may connect you with third-party, independent contractors in your area.
+      Contractor availability, licensing, and pricing vary by location. Submission does not guarantee a quote or any specific outcome.
+    </p>
+  </footer>
+
+  <!-- ══ STICKY MOBILE CTA ═════════════════════════════ -->
+  <div id="sticky" aria-hidden="true">
+    <a href="#form-card">Check Contractors Near You</a>
+  </div>
+
+  <!-- ══ JAVASCRIPT ════════════════════════════════════ -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+
+      /* ── Lead store ─────────────────────────────────────────────── */
+      var leads = [];
+
+      /* ── Helper: safe event binding ─────────────────────────────── */
+      function on(el, evt, fn) { if (el) el.addEventListener(evt, fn); }
+
+      /* ── Gallery ────────────────────────────────────────────────── */
+      var TILES = [
+        { label: 'Walk-In Shower Upgrade',  icon: '🚿', g: ['#1e40af', '#3b82f6'] },
+        { label: 'Tub Replacement',          icon: '🛁', g: ['#5b21b6', '#8b5cf6'] },
+        { label: 'Double Vanity Remodel',    icon: '🪞', g: ['#065f46', '#10b981'] },
+        { label: 'Full Bathroom Renovation', icon: '🏠', g: ['#9f1239', '#f43f5e'] },
+      ];
+      var galGrid = document.getElementById('gal-grid');
+      if (galGrid) {
+        TILES.forEach(function (t) {
+          var d = document.createElement('div');
+          d.className = 'gtile';
+          d.innerHTML =
+            '<div class="gtile-in" style="background:linear-gradient(135deg,' + t.g[0] + ',' + t.g[1] + ')">' +
+              '<span class="gtile-icon">' + t.icon + '</span>' +
+              '<span class="gtile-label">' + t.label + '</span>' +
+            '</div>';
+          galGrid.appendChild(d);
+        });
+      }
+
+      /* ── Field references ───────────────────────────────────────── */
+      var fn      = document.getElementById('fn');
+      var fz      = document.getElementById('fz');
+      var fp      = document.getElementById('fp');
+      var fpt     = document.getElementById('fpt');
+      var ftl     = document.getElementById('ftl');
+      var form    = document.getElementById('lead-form');
+      var btn1    = document.getElementById('btn-sub');      // search bar button
+      var btn2    = document.getElementById('btn-submit2');  // step 2 submit button
+      var okBox   = document.getElementById('ok');
+      var s1El    = document.getElementById('s1');
+      var s2El    = document.getElementById('s2');
+
+      /* ── Error helpers ──────────────────────────────────────────── */
+      function setErr(el, eid, show) {
+        var m = document.getElementById(eid);
+        if (!el || !m) return;
+        el.classList.toggle('err', show);
+        m.classList.toggle('on', show);
+      }
+      function clr(el, eid) { setErr(el, eid, false); }
+
+      on(fn,  'input',  function () { clr(fn,  'e-fn');  });
+      on(fz,  'input',  function () { clr(fz,  'e-fz');  });
+      on(fp,  'input',  function () { clr(fp,  'e-fp');  });
+      on(fpt, 'change', function () { clr(fpt, 'e-fpt'); });
+      on(ftl, 'change', function () { clr(ftl, 'e-ftl'); });
+
+      /* ── Phone auto-format ──────────────────────────────────────── */
+      on(fp, 'input', function () {
+        var d = fp.value.replace(/\D/g, '').slice(0, 10);
+        if      (d.length >= 7) fp.value = '(' + d.slice(0,3) + ') ' + d.slice(3,6) + '-' + d.slice(6);
+        else if (d.length >= 4) fp.value = '(' + d.slice(0,3) + ') ' + d.slice(3);
+        else if (d.length >  0) fp.value = '(' + d;
+        else                    fp.value = '';
+      });
+
+      /* ── Zip: digits only ───────────────────────────────────────── */
+      on(fz, 'input', function () {
+        fz.value = fz.value.replace(/\D/g, '').slice(0, 5);
+      });
+
+      /* ── Also trigger step 1 on Enter key in zip field ─────────── */
+      on(fz, 'keydown', function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); revealStep2(); }
+      });
+
+      /* ── Step 1 validation (zip only) ───────────────────────────── */
+      function validateStep1() {
+        if (!fz || !/^\d{5}$/.test(fz.value.trim())) {
+          setErr(fz, 'e-fz', true);
+          return false;
+        }
+        return true;
+      }
+
+      /* ── Step 2 validation ──────────────────────────────────────── */
+      function validateStep2() {
+        var ok = true;
+        if (!fn  || fn.value.trim().length < 2)             { setErr(fn,  'e-fn',  true); ok = false; }
+        if (!fp  || fp.value.replace(/\D/g,'').length < 10) { setErr(fp,  'e-fp',  true); ok = false; }
+        if (!fpt || !fpt.value)                              { setErr(fpt, 'e-fpt', true); ok = false; }
+        if (!ftl || !ftl.value)                              { setErr(ftl, 'e-ftl', true); ok = false; }
+        return ok;
+      }
+
+      /* ── Reveal step 2 ──────────────────────────────────────────── */
+      function revealStep2() {
+        if (!validateStep1()) return;
+
+        /* Brief "Checking availability…" loading state on btn1 */
+        btn1.classList.add('loading');
+        btn1.disabled = true;
+
+        setTimeout(function () {
+          btn1.classList.remove('loading');
+          btn1.disabled = false;
+
+          /* Show step 2 card */
+          s2El.style.display = 'block';
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              s2El.classList.add('open');
+            });
+          });
+
+          /* Scroll to step 2 */
+          setTimeout(function () {
+            s2El.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          }, 60);
+
+          /* Focus first step-2 field */
+          setTimeout(function () { if (fn) fn.focus(); }, 320);
+
+        }, 600);
+      }
+
+      /* ── sendToAPI ── swap in real fetch() here ─────────────────── */
+      function sendToAPI(data) {
+        return fetch("https://usebasin.com/f/695e05eae9d3", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify({
+            name:         data.fullName,
+            phone:        data.phone,
+            zip:          data.zipCode,
+            project_type: data.projectType,
+            timeline:     data.timeline,
+            page_url:     data.pageUrl,
+            source:       "GetBathroom.com"
+          })
+        })
+        .then(function (res) { return res.json(); })
+        .catch(function (err) {
+          console.error("[Basin] Submission error:", err);
+          return { success: false };
+        });
+      }
+
+      /* ── handleLeadSubmit (step 2 final submit) ─────────────────── */
+      function handleLeadSubmit() {
+        if (!validateStep2()) {
+          var first = document.querySelector('#s2 .err');
+          if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return;
+        }
+
+        var data = {
+          fullName:    fn  ? fn.value.trim()  : '',
+          zipCode:     fz  ? fz.value.trim()  : '',
+          phone:       fp  ? fp.value.trim()  : '',
+          projectType: fpt ? fpt.value        : '',
+          timeline:    ftl ? ftl.value        : '',
+          timestamp:   new Date().toISOString(),
+          pageUrl:     window.location.href,
+        };
+
+        /* Loading state on step-2 button */
+        if (btn2) { btn2.classList.add('loading'); btn2.disabled = true; }
+
+        console.log('[GetBathroom] Lead submitted:', JSON.stringify(data, null, 2));
+
+        sendToAPI(data).then(function (res) {
+
+          if (!res || res.success === false) {
+            alert("Something went wrong. Please try again.");
+            if (btn2) { btn2.classList.remove('loading'); btn2.disabled = false; }
+            return;
+          }
+
+          console.log("[Basin] Lead sent successfully");
+          leads.push(data);
+          console.log('[GetBathroom] Session total leads:', leads.length);
+
+          /* Hide entire form area, show success */
+          if (form) form.style.display = 'none';
+          ['micro', 's1-trust', 'trust-micro', 'fc-title'].forEach(function (cls) {
+            var el = document.querySelector('.' + cls);
+            if (el) el.style.display = 'none';
+          });
+          if (okBox) okBox.classList.add('on');
+
+          /* Kill sticky CTA */
+          var s = document.getElementById('sticky');
+          if (s) s.style.display = 'none';
+        });
+      }
+
+      /* ── Button wiring ──────────────────────────────────────────── */
+      on(btn1, 'click', revealStep2);
+      on(btn2, 'click', handleLeadSubmit);
+
+      /* Prevent browser default form submit */
+      on(form, 'submit', function (e) { e.preventDefault(); });
+
+      /* ── Smooth scroll ──────────────────────────────────────────── */
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        on(a, 'click', function (e) {
+          var t = document.querySelector(a.getAttribute('href'));
+          if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+      });
+
+      /* ── Sticky CTA: mobile only, hide when hero visible ────────── */
+      var heroEl   = document.getElementById('hero');
+      var stickyEl = document.getElementById('sticky');
+      if (heroEl && stickyEl && window.matchMedia('(max-width:599px)').matches) {
+        var obs = new IntersectionObserver(function (entries) {
+          var vis = entries[0].isIntersecting;
+          stickyEl.style.display = vis ? 'none' : 'block';
+          stickyEl.setAttribute('aria-hidden', String(vis));
+        }, { threshold: 0.05 });
+        obs.observe(heroEl);
+      }
+
+    }); // end DOMContentLoaded
+  </script>
+</body>
+</html>
