@@ -1203,10 +1203,51 @@ document.addEventListener('DOMContentLoaded', function () {
         s2El.classList.add('open');
         s2El.style.display = 'block';
       }, 400);
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+
+  var form  = document.getElementById('lead-form');
+  var btn1  = document.getElementById('btn-sub');
+  var btn2  = document.getElementById('btn-submit2');
+
+  var fn  = document.getElementById('fn');
+  var fz  = document.getElementById('fz');
+  var fp  = document.getElementById('fp');
+  var fpt = document.getElementById('fpt');
+  var ftl = document.getElementById('ftl');
+
+  var s2El  = document.getElementById('s2');
+  var okBox = document.getElementById('ok');
+
+  function validateStep1() {
+    return /^\d{5}$/.test(fz.value.trim());
+  }
+
+  function validateStep2() {
+    return (
+      fn.value.trim().length >= 2 &&
+      fp.value.replace(/\D/g,'').length >= 10 &&
+      fpt.value &&
+      ftl.value
+    );
+  }
+
+  // STEP 1
+  if (btn1) {
+    btn1.addEventListener('click', function () {
+      if (!validateStep1()) return;
+
+      btn1.classList.add('loading');
+
+      setTimeout(function () {
+        btn1.classList.remove('loading');
+        s2El.style.display = 'block';
+        s2El.classList.add('open');
+      }, 400);
     });
   }
 
-  // FORM SUBMIT (FINAL FIX)
+  // FORM SUBMIT
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -1226,7 +1267,7 @@ document.addEventListener('DOMContentLoaded', function () {
       formData.append("source", "GetBathroom.com");
       formData.append("page_url", window.location.href);
 
-      fetch("https://usebasin.com/f/c120462e1000", {
+      fetch("https://usebasin.com/f/695e05eae9d3", {
         method: "POST",
         body: formData
       })
