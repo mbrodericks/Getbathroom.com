@@ -1131,91 +1131,119 @@
         .then(function (res) { return res.json(); })
         .catch(function (err) {
           console.error("[Basin] Submission error:", err);
-          return { success: false };
-        });
-      }
+<script>
+document.addEventListener('DOMContentLoaded', function () {
 
-      /* ── handleLeadSubmit (step 2 final submit) ─────────────────── */
-      function handleLeadSubmit() {
-        if (!validateStep2()) {
-          var first = document.querySelector('#s2 .err');
-          if (first) first.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          return;
-        }
+  var form  = document.getElementById('lead-form');
+  var btn1  = document.getElementById('btn-sub');
+  var btn2  = document.getElementById('btn-submit2');
 
-        var data = {
-          fullName:    fn  ? fn.value.trim()  : '',
-          zipCode:     fz  ? fz.value.trim()  : '',
-          phone:       fp  ? fp.value.trim()  : '',
-          projectType: fpt ? fpt.value        : '',
-          timeline:    ftl ? ftl.value        : '',
-          timestamp:   new Date().toISOString(),
-          pageUrl:     window.location.href,
-        };
+  var fn  = document.getElementById('fn');
+  var fz  = document.getElementById('fz');
+  var fp  = document.getElementById('fp');
+  var fpt = document.getElementById('fpt');
+  var ftl = document.getElementById('ftl');
 
-        /* Loading state on step-2 button */
-        if (btn2) { btn2.classList.add('loading'); btn2.disabled = true; }
+  var s2El  = document.getElementById('s2');
+  var okBox = document.getElementById('ok');
 
-        console.log('[GetBathroom] Lead submitted:', JSON.stringify(data, null, 2));
+  function showError(el, msgId) {
+    if (!el) return;
+    el.classList.add('err');
+    var m = document.getElementById(msgId);
+    if (m) m.classList.add('on');
+  }
 
-        sendToAPI(data).then(function (res) {
+  function clearError(el, msgId) {
+    if (!el) return;
+    el.classList.remove('err');
+    var m = document.getElementById(msgId);
+    if (m) m.classList.remove('on');
+  }
 
-          if (!res || res.success === false) {
-            alert("Something went wrong. Please try again.");
-            if (btn2) { btn2.classList.remove('loading'); btn2.disabled = false; }
-            return;
-          }
+  function validateStep1() {
+    if (!/^\d{5}$/.test(fz.value.trim())) {
+      showError(fz, 'e-fz');
+      return false;
+    }
+    return true;
+  }
 
-          console.log("[Basin] Lead sent successfully");
-          leads.push(data);
-          console.log('[GetBathroom] Session total leads:', leads.length);
+  function validateStep2() {
+    let ok = true;
 
-          /* Hide entire form area, show success */
-          if (form) form.style.display = 'none';
-          ['micro', 's1-trust', 'trust-micro', 'fc-title'].forEach(function (cls) {
-            var el = document.querySelector('.' + cls);
-            if (el) el.style.display = 'none';
-          });
-          if (okBox) okBox.classList.add('on');
+    if (fn.value.trim().length < 2) {
+      showError(fn, 'e-fn'); ok = false;
+    }
 
-          /* Kill sticky CTA */
-          var s = document.getElementById('sticky');
-          if (s) s.style.display = 'none';
-        });
-      }
+    if (fp.value.replace(/\D/g,'').length < 10) {
+      showError(fp, 'e-fp'); ok = false;
+    }
 
-      /* ── Button wiring ──────────────────────────────────────────── */
-      on(btn1, 'click', revealStep2);
-      if (btn2) {
-  btn2.addEventListener('click', function () {
-    console.log("Submit clicked");
-    handleLeadSubmit();
-  });
-}
+    if (!fpt.value) {
+      showError(fpt, 'e-fpt'); ok = false;
+    }
 
-      /* Prevent browser default form submit */
-      on(form, 'submit', function (e) { e.preventDefault(); });
+    if (!ftl.value) {
+      showError(ftl, 'e-ftl'); ok = false;
+    }
 
-      /* ── Smooth scroll ──────────────────────────────────────────── */
-      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
-        on(a, 'click', function (e) {
-          var t = document.querySelector(a.getAttribute('href'));
-          if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
-        });
+    return ok;
+  }
+
+  // STEP 1
+  if (btn1) {
+    btn1.addEventListener('click', function () {
+      if (!validateStep1()) return;
+
+      btn1.classList.add('loading');
+
+      setTimeout(function () {
+        btn1.classList.remove('loading');
+        s2El.classList.add('open');
+        s2El.style.display = 'block';
+      }, 400);
+    });
+  }
+
+  // FORM SUBMIT (FINAL FIX)
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      if (!validateStep2()) return;
+
+      btn2.classList.add('loading');
+      btn2.disabled = true;
+
+      const formData = new FormData();
+
+      formData.append("name", fn.value);
+      formData.append("phone", fp.value);
+      formData.append("zip", fz.value);
+      formData.append("project_type", fpt.value);
+      formData.append("timeline", ftl.value);
+      formData.append("source", "GetBathroom.com");
+      formData.append("page_url", window.location.href);
+
+      fetch("https://usebasin.com/f/c120462e1000", {
+        method: "POST",
+        body: formData
+      })
+      .then(() => {
+        form.style.display = 'none';
+        okBox.classList.add('on');
+      })
+      .catch(() => {
+        alert("Something went wrong. Try again.");
+        btn2.classList.remove('loading');
+        btn2.disabled = false;
       });
+    });
+  }
 
-      /* ── Sticky CTA: mobile only, hide when hero visible ────────── */
-      var heroEl   = document.getElementById('hero');
-      var stickyEl = document.getElementById('sticky');
-      if (heroEl && stickyEl && window.matchMedia('(max-width:599px)').matches) {
-        var obs = new IntersectionObserver(function (entries) {
-          var vis = entries[0].isIntersecting;
-          stickyEl.style.display = vis ? 'none' : 'block';
-          stickyEl.setAttribute('aria-hidden', String(vis));
-        }, { threshold: 0.05 });
-        obs.observe(heroEl);
-      }
-
+});
+</script>
     }); // end DOMContentLoaded
   </script>
 </body>
