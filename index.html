@@ -1186,7 +1186,12 @@
 
       /* ── Button wiring ──────────────────────────────────────────── */
       on(btn1, 'click', revealStep2);
-      on(btn2, 'click', handleLeadSubmit);
+      if (btn2) {
+  btn2.addEventListener('click', function () {
+    console.log("Submit clicked");
+    handleLeadSubmit();
+  });
+}
 
       /* Prevent browser default form submit */
       on(form, 'submit', function (e) { e.preventDefault(); });
